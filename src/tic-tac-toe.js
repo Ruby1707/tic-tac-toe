@@ -1,8 +1,4 @@
 class FSM {
-    /**
-     * Creates new FSM instance.
-     * @param config
-     */
     constructor(config) {
         this.configuration=config;
         this.newState=this.configuration.initial;
@@ -43,21 +39,9 @@ class FSM {
        this.count++;
        this.canRedo = false;
        }
-
-
-    /**
-     * Resets FSM state to initial.
-     */
     reset() {
       this.newState=this.configuration.initial;
     }
-
-    /**
-     * Returns an array of states for which there are specified event transition rules.
-     * Returns all states if argument is undefined.
-     * @param event
-     * @returns {Array}
-     */
     getStates(event) {
       let arr=[];
       if(event==undefined){
@@ -74,12 +58,6 @@ class FSM {
          return arr;
        }
     }
-
-    /**
-     * Goes back to previous state.
-     * Returns false if undo is not available.
-     * @returns {Boolean}
-     */
     undo() {
       this.count++;
       if (this.count <= 1 ) return false;
@@ -90,12 +68,6 @@ class FSM {
       this.canRedo = true;
       return true;
     }
-
-    /**
-     * Goes redo to state.
-     * Returns false if redo is not available.
-     * @returns {Boolean}
-     */
     redo() {
       if(this.canRedo==false){
         return false;
@@ -107,13 +79,11 @@ class FSM {
       this.prevState = tmp;
       return true;
     }
-
-    /**
-     * Clears transition history
-     */
     clearHistory() {
       this.count=0;
     }
 }
 
 module.exports = FSM;
+
+
